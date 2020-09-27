@@ -15,7 +15,7 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 90vh;
+    height: 70vh;
     background-size: cover;
     color: #ffffff;
     
@@ -58,6 +58,8 @@ h2 {
     background-size: cover;
     filter: grayscale(1);
     float: right;
+    margin-bottom: -55px;
+    cursor: pointer;
 }
 .btn:active,
 .btn:focus {
@@ -66,3 +68,39 @@ h2 {
 .btn:active{
     transform: scale(1.02)
 }
+
+.quote {
+    font: 1.0rem Georgia, serif;
+    margin: 0;
+    background: rgba(200,200,200,0.6);
+    padding: 1em;
+    border-radius: 1em;
+  }
+  .quote{
+    width: 80vh;  
+    height: 15vh;
+    margin: 1em auto;
+    cursor: pointer;
+}
+  .quote figcaption,
+  .quote blockquote {     
+    
+    /* margin-bottom: 2em; */
+  }
+  .quote figcaption {    
+    text-align: right;
+    
+  }
+
+  /* .btn2 {
+    /* padding: 10px 30px; */
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background: url("http://droit.ump.ma/uploads/images/1/icone%20avis/5c0f809567e28.png");
+    background-size: cover;
+    filter: grayscale(1);
+    margin-left: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+  } */
