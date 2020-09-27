@@ -104,6 +104,7 @@ function setBgGreet() {
     greeting.textContent = 'Good Evening, ';
     document.body.style.color = 'white';
   }
+  
 }
 
 // Get Name
