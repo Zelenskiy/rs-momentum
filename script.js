@@ -198,7 +198,7 @@ async function setQuote() {
     const data = await res.json(); 
     blockquote.textContent = data.quoteText;
     figcaption.textContent = data.quoteAuthor;
-};
+}
 
 async function getWeather() {  
     let city = 'London,uk';
