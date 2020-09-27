@@ -3,18 +3,22 @@
     margin: 0;
     padding: 0;
 }
+body{
+    transition: background-image 1s ease-in-out;
+    /* display: flex; */
+}
   
-body {
+.main {
     font-family: 'Quicksand', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 100vh;
+    height: 90vh;
     background-size: cover;
     color: #ffffff;
-    transition: background-image 1s ease-in-out;
+    
  
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000000;
@@ -45,3 +49,19 @@ h2 {
     }
 }
   
+.btn {
+    width: 60px;
+    height: 60px;
+    border: 0;
+    background: url("http://droit.ump.ma/uploads/images/1/icone%20avis/5c0f809567e28.png");
+    background-size: cover;
+    filter: grayscale(1);
+    float: right;
+}
+.btn:active,
+.btn:focus {
+    outline: 0;
+}
+.btn:active{
+    transform: scale(1.02)
+}

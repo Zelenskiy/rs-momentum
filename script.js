@@ -2,8 +2,10 @@
 const time = document.querySelector('.time'),
   greeting = document.querySelector('.greeting'),
   name = document.querySelector('.name'),
-  focus = document.querySelector('.focus');
-  dateString = document.querySelector('.day__string');
+  focus = document.querySelector('.focus'),
+  dateString = document.querySelector('.day__string'),
+  btn = document.querySelector('.btn');
+  
 
 // Images
 var randomImage = [
@@ -59,8 +61,8 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds()
     ;
-    if (sec % 10 < 1)
-    // if (min == 0 && sec < 1)
+    // if (sec % 10 < 1)
+    if (min == 0 && sec < 1)
         setBgGreet();
 
     let options = {
@@ -174,6 +176,7 @@ name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+btn.addEventListener('click', setBgGreet);
 
 
 // Run
