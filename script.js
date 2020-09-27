@@ -123,7 +123,7 @@ function setBgGreet() {
     } else if (hour > 17 && hour < 24) {
         // Evening
         bgImage = "assets/images/evening/"+get_random(randomImage);
-        greeting.textContent = 'Good Afternoon, ';
+        greeting.textContent = 'Good Evening, ';
     } else {
         // Night
         bgImage = "assets/images/night/"+get_random(randomImage);
@@ -199,6 +199,17 @@ async function setQuote() {
     blockquote.textContent = data.quoteText;
     figcaption.textContent = data.quoteAuthor;
 };
+
+async function getWeather() {  
+    let city = 'London,uk';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=`+city+
+                `&lang=ru&appid=e18d58f53ae4e3152a24e733c75c4c3f&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json(); 
+    console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+  }
+
+  getWeather()
 
 
 
