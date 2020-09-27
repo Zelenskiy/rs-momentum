@@ -3,16 +3,32 @@ const time = document.querySelector('.time'),
   greeting = document.querySelector('.greeting'),
   name = document.querySelector('.name'),
   focus = document.querySelector('.focus');
+  dateString = document.querySelector('.day__string');
 
 // Options
-const showAmPm = true;
+const showAmPm = false;
+// const showAmPm = true;
 
 // Show Time
 function showTime() {
   let today = new Date(),
     hour = today.getHours(),
     min = today.getMinutes(),
-    sec = today.getSeconds();
+    sec = today.getSeconds()
+    ;
+
+    let options = {
+        // era: 'long',
+        // year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+        // ,
+        // timezone: 'UTC',
+        // hour: 'numeric',
+        // minute: 'numeric',
+        // second: 'numeric'
+      };
 
   // Set AM or PM
   const amPm = hour >= 12 ? 'PM' : 'AM';
@@ -20,10 +36,16 @@ function showTime() {
   // 12hr Format
   hour = hour % 12 || 12;
 
+  // 24hr Format
+  hour = hour
+
   // Output Time
   time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(
     sec
   )} ${showAmPm ? amPm : ''}`;
+
+
+   dateString.innerText = today.toLocaleString("en", options);
 
   setTimeout(showTime, 1000);
 }
@@ -90,6 +112,7 @@ function getFocus() {
 
 // Set Focus
 function setFocus(e) {
+    // console.log(333);
   if (e.type === 'keypress') {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
@@ -101,10 +124,13 @@ function setFocus(e) {
   }
 }
 
+
+
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+
 
 // Run
 showTime();
