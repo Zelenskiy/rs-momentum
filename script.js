@@ -59,8 +59,8 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds()
     ;
-    // if (sec < 1)
-    if (min == 0 && sec < 1)
+    if (sec % 10 < 1)
+    // if (min == 0 && sec < 1)
         setBgGreet();
 
     let options = {
