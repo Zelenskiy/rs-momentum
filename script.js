@@ -33,6 +33,25 @@ var randomImage = [
 const showAmPm = false;
 // const showAmPm = true;
 
+
+// Smooth image change
+function viewBgImage(data) {
+    const body = document.querySelector('body');
+    const src = data;
+    const img = document.createElement('img');
+    img.src = src;
+    img.onload = () => {      
+        document.body.style.backgroundImage = `url(${src})`
+    }; 
+  }
+
+  function getImage(bgImage) {
+    const index = i % bgImage.length;
+    const imageSrc = bgImage;
+    viewBgImage(imageSrc);
+    i++;
+  } 
+
 // Show Time
 function showTime() {
   let today = new Date(),
@@ -40,18 +59,14 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds()
     ;
+    // if (sec < 1)
+    if (min == 0 && sec < 1)
+        setBgGreet();
 
     let options = {
-        // era: 'long',
-        // year: 'numeric',
         month: 'long',
         day: 'numeric',
         weekday: 'long'
-        // ,
-        // timezone: 'UTC',
-        // hour: 'numeric',
-        // minute: 'numeric',
-        // second: 'numeric'
       };
 
   // Set AM or PM
@@ -80,31 +95,29 @@ function addZero(n) {
 }
 
 // Set Background and Greeting
+let i = 0;
+
 function setBgGreet() {
-  let today = new Date(),
-    hour = today.getHours();
+    let today = new Date(),
+        hour = today.getHours();
+    let bgImage="";
+
     
-  if (hour < 12) {
-    // Morning
-    document.body.style.backgroundImage =
-       "url('./assets/images/morning/"+get_random(randomImage)+"'";
-    //    "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
-    greeting.textContent = 'Good Morning, ';
-  } else if (hour < 18) {
-    // Afternoon
-    document.body.style.backgroundImage =
-        "url('./assets/images/day/"+get_random(randomImage)+"'";
-    //    "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
-    greeting.textContent = 'Good Afternoon, ';
-  } else {
-    // Evening
-    document.body.style.backgroundImage =
-       "url('./assets/images/evening/"+get_random(randomImage)+"'";
-    //    "url('https://i.ibb.co/924T2Wv/night.jpg')";
-    greeting.textContent = 'Good Evening, ';
-    document.body.style.color = 'white';
-  }
-  
+    if (hour < 12) {
+        // Morning
+        bgImage = "assets/images/morning/"+get_random(randomImage);
+        greeting.textContent = 'Good Morning, ';
+    } else if (hour < 18) {
+        // Afternoon
+        bgImage = "assets/images/day/"+get_random(randomImage);
+        greeting.textContent = 'Good Afternoon, ';
+    } else {
+        // Evening
+        bgImage = "assets/images/evening/"+get_random(randomImage);
+        greeting.textContent = 'Good Evening, ';
+        document.body.style.color = 'white';
+    }    
+    getImage(bgImage)  
 }
 
 // Get Name
