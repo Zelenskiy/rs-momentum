@@ -8,6 +8,7 @@ const time = document.querySelector('.time'),
     blockquote = document.querySelector('blockquote'),
     figcaption = document.querySelector('figcaption'),
     btn2 = document.querySelector('.btn2');
+    btn_2 = document.querySelector('.btn_2');
   
 
 // Images
@@ -67,7 +68,7 @@ function showTime() {
     // if (sec % 10 < 1)
     if (min == 0 && sec < 1)
         setBgGreet();
-
+        
     let options = {
         month: 'long',
         day: 'numeric',
@@ -90,7 +91,7 @@ function showTime() {
 
 
    dateString.innerText = today.toLocaleString("en", options);
-   getQuote();
+   
 
   setTimeout(showTime, 1000);
 }
@@ -104,6 +105,8 @@ function addZero(n) {
 let i = 0;
 
 function setBgGreet() {
+    
+
     let today = new Date(),
         hour = today.getHours();
     let bgImage="";
@@ -128,6 +131,7 @@ function setBgGreet() {
         document.body.style.color = 'white';
     }    
     getImage(bgImage)  
+    setQuote();
 }
 
 // Get Name
@@ -185,16 +189,17 @@ name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 btn.addEventListener('click', setBgGreet);
-btn2.addEventListener('click', getQuote);
+btn2.addEventListener('click', setQuote);
+btn_2.addEventListener('click', setQuote);
 
-async function getQuote() {  
-  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
-  const res = await fetch(url);
-  const data = await res.json(); 
-  blockquote.textContent = data.quoteText;
-  figcaption.textContent = data.quoteAuthor;
-}
-// document.addEventListener('DOMContentLoaded', getQuote);
+async function setQuote() {  
+    const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+    const res = await fetch(url);
+    const data = await res.json(); 
+    blockquote.textContent = data.quoteText;
+    figcaption.textContent = data.quoteAuthor;
+};
+
 
 
 
@@ -204,4 +209,4 @@ showTime();
 setBgGreet();
 getName();
 getFocus();
-getQuote();
+setQuote();
