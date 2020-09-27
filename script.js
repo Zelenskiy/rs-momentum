@@ -1,10 +1,13 @@
 // DOM Elements
 const time = document.querySelector('.time'),
-  greeting = document.querySelector('.greeting'),
-  name = document.querySelector('.name'),
-  focus = document.querySelector('.focus'),
-  dateString = document.querySelector('.day__string'),
-  btn = document.querySelector('.btn');
+    greeting = document.querySelector('.greeting'),
+    name = document.querySelector('.name'),
+    focus = document.querySelector('.focus'),
+    dateString = document.querySelector('.day__string'),
+    btn = document.querySelector('.btn'),
+    blockquote = document.querySelector('blockquote'),
+    figcaption = document.querySelector('figcaption'),
+    btn2 = document.querySelector('.btn2');
   
 
 // Images
@@ -87,6 +90,7 @@ function showTime() {
 
 
    dateString.innerText = today.toLocaleString("en", options);
+   getQuote();
 
   setTimeout(showTime, 1000);
 }
@@ -181,6 +185,18 @@ name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 btn.addEventListener('click', setBgGreet);
+btn2.addEventListener('click', getQuote);
+
+async function getQuote() {  
+  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+  const res = await fetch(url);
+  const data = await res.json(); 
+  blockquote.textContent = data.quoteText;
+  figcaption.textContent = data.quoteAuthor;
+}
+// document.addEventListener('DOMContentLoaded', getQuote);
+
+
 
 
 // Run
@@ -188,3 +204,4 @@ showTime();
 setBgGreet();
 getName();
 getFocus();
+getQuote();
