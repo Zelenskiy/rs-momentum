@@ -8,6 +8,7 @@ const time = document.querySelector('.time'),
     blockquote = document.querySelector('blockquote'),
     figcaption = document.querySelector('figcaption'),
     btn2 = document.querySelector('.btn2');
+    btn_2 = document.querySelector('.btn_2');
   
 
 // Images
@@ -67,7 +68,7 @@ function showTime() {
     // if (sec % 10 < 1)
     if (min == 0 && sec < 1)
         setBgGreet();
-
+        
     let options = {
         month: 'long',
         day: 'numeric',
@@ -90,7 +91,7 @@ function showTime() {
 
 
    dateString.innerText = today.toLocaleString("en", options);
-   getQuote();
+   
 
   setTimeout(showTime, 1000);
 }
@@ -104,6 +105,8 @@ function addZero(n) {
 let i = 0;
 
 function setBgGreet() {
+    
+
     let today = new Date(),
         hour = today.getHours();
     let bgImage="";
@@ -120,7 +123,7 @@ function setBgGreet() {
     } else if (hour > 17 && hour < 24) {
         // Evening
         bgImage = "assets/images/evening/"+get_random(randomImage);
-        greeting.textContent = 'Good Afternoon, ';
+        greeting.textContent = 'Good Evening, ';
     } else {
         // Night
         bgImage = "assets/images/night/"+get_random(randomImage);
@@ -128,6 +131,7 @@ function setBgGreet() {
         document.body.style.color = 'white';
     }    
     getImage(bgImage)  
+    setQuote();
 }
 
 // Get Name
@@ -185,16 +189,28 @@ name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
 btn.addEventListener('click', setBgGreet);
-btn2.addEventListener('click', getQuote);
+btn2.addEventListener('click', setQuote);
+btn_2.addEventListener('click', setQuote);
 
-async function getQuote() {  
-  const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
-  const res = await fetch(url);
-  const data = await res.json(); 
-  blockquote.textContent = data.quoteText;
-  figcaption.textContent = data.quoteAuthor;
-}
-// document.addEventListener('DOMContentLoaded', getQuote);
+async function setQuote() {  
+    const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+    const res = await fetch(url);
+    const data = await res.json(); 
+    blockquote.textContent = data.quoteText;
+    figcaption.textContent = data.quoteAuthor;
+};
+
+async function getWeather() {  
+    let city = 'London,uk';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=`+city+
+                `&lang=ru&appid=e18d58f53ae4e3152a24e733c75c4c3f&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json(); 
+    console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+  }
+
+  getWeather()
+
 
 
 
@@ -204,4 +220,4 @@ showTime();
 setBgGreet();
 getName();
 getFocus();
-getQuote();
+setQuote();
