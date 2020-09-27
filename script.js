@@ -75,7 +75,7 @@ function showTime() {
   const amPm = hour >= 12 ? 'PM' : 'AM';
 
   // 12hr Format
-  hour = hour % 12 || 12;
+//   hour = hour % 12 || 12;
 
   // 24hr Format
   hour = hour
